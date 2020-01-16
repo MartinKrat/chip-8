@@ -55,6 +55,7 @@ class QPaint2: public QWidget
 
 /* This is not the final main-function. This modul just draws a 4*64 x 4*32 window on the screen.  *
 * Later, this window will represent the screen of the chip-8 emulator.                             *
+* Changing window-size from 128x64 to 64x32.                                                       *
 * Yet, no signal-handling is implemented. Pixel-drawing is now implemented:                       */  
 int main(int argc, char** argv)
 {
