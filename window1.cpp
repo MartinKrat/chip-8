@@ -37,6 +37,7 @@ class QPaint2: public QWidget
 	void paintEvent(QPaintEvent *event)
 	{
 		int i,j;
+		QPainter Inst_p2(this);
 		for(i=0;i<64;++i)
 		{
 			for(j=0;j<32;++j)
@@ -44,7 +45,6 @@ class QPaint2: public QWidget
 				/*checks gfx if a pixel has to be drawn or not */
 				if(gfx[i][j] == 1)
 				{
-					QPainter Inst_p2(this);
 					Inst_p2.drawRect((i*4),(j*4),4,4); /*x , y*/
 				}
 			}
