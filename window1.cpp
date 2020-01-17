@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 	QApplication Window1(argc, argv);
 
 	QPaint2 Inst_but;
-	Inst_but.paintEvent(NULL);;
+	Inst_but.repaint(0,0,0,0);
 	Inst_but.setGeometry(500,500,(4*64),(4*32));
 	Inst_but.show();
 
