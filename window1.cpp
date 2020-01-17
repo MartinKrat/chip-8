@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 	QWidget1.repaint(0,0,0,0);
 	QWidget1.setGeometry(500,500,(4*64),(4*32));
 	char QWTitle1[] = "chip-8 screen";
-	QString QWString1(WTitle1);
+	QString QWString1(QWTitle1);
 	QWidget1.setWindowTitle(QWString1);
 	QWidget1.show();
 
