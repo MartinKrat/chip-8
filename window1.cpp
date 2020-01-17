@@ -60,10 +60,10 @@ int main(int argc, char** argv)
 {
 	QApplication Window1(argc, argv);
 
-	QPaint2 Inst_but;
-	Inst_but.repaint(0,0,0,0);
-	Inst_but.setGeometry(500,500,(4*64),(4*32));
-	Inst_but.show();
+	QPaint2 QWidget1;
+	QWidget1.repaint(0,0,0,0);
+	QWidget1.setGeometry(500,500,(4*64),(4*32));
+	QWidget1.show();
 
 return(Window1.exec());
 }
