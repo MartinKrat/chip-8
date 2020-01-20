@@ -60,13 +60,13 @@ int main(int argc, char** argv)
 {
 	QApplication Window1(argc, argv);
 
-	QPaint2 QWidget1;
-	QWidget1.repaint(0,0,0,0);
-	QWidget1.setGeometry(500,500,(4*64),(4*32));
+	QPaint2* QWidget1 = new QPaint2();
+	(*QWidget1).repaint(0,0,0,0);
+	(*QWidget1).setGeometry(500,500,(4*64),(4*32));
 	char QWTitle1[] = "chip-8 screen";
 	QString QWString1(QWTitle1);
-	QWidget1.setWindowTitle(QWString1);
-	QWidget1.show();
+	(*QWidget1).setWindowTitle(QWString1);
+	(*QWidget1).show();
 
 return(Window1.exec());
 }
