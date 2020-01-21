@@ -29,3 +29,6 @@
 
 	/*pixel state of screen of chip8 :*/
 	extern unsigned char gfx[64][32];
+
+	/*keypad-memory of chip8 : */
+	unsigned char key[16];
