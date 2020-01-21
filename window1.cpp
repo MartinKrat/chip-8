@@ -31,6 +31,9 @@ unsigned char sound_timer; /*rs_t*/
 /*pixel state of screen of chip8 :*/
 unsigned char gfx[64][32];
 
+/*keypad-memory of chip8 : */
+unsigned char key[16];
+
 class QPaint2: public QWidget
 {
 	public:
