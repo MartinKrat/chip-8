@@ -8,7 +8,7 @@ stores it in opcode2. After that key_opcode returns opcode2 .         */
 
 
 
-short key_opcode(void)
+unsigned short key_opcode(void)
 {
 	int counter=0, i, no_emit=0;
 	unsigned short opcode2=0, opcode3=0;
