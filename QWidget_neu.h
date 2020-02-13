@@ -1,8 +1,6 @@
 #ifndef QWIDGET_NEU_H
 #define QWIDGET_NEU_H
 
-/*declaration of all widgets, threads and major functions is done here: */
-
 #include<QObject>
 #include<QWidget>
 #include<QThread>
@@ -13,6 +11,8 @@
 #include "memory1h.h"
 
 
+
+/*declaration of all widgets, threads and major functions is done here: */
 	
 class Thread1: public QThread
 {
