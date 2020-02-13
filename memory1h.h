@@ -1,9 +1,10 @@
-/* Declaration of variables used for chip-8 implementation.       *
-*  Definition of these variables is done in module memory1h.cpp. */
 #ifndef MEMORY1H_H
 #define MEMORY1H_H
  
 
+
+/* Declaration of variables used for chip-8 implementation.       *
+*  Definition of these variables is done in module memory1h.cpp. */
 
 	/* total memory of chip8 : */
 	extern unsigned char memory[4096];
