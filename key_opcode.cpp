@@ -1,11 +1,12 @@
 #include<stdio.h>
+
+
+
 /*Function key_opcode reads each character from the input.            *
  Moreover key_opcode checks if each opcode consists of 4 characters   *
 and if each character is a number (1 to 9) or a letter (a,b,c,d,e,f). *
 Then, key_opcode transforms this string to a real hex-number and      *
 stores it in opcode2. After that key_opcode returns opcode2 .         */ 
-
-
 
 unsigned short key_opcode(void)
 {
