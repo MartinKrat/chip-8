@@ -1,5 +1,7 @@
 /* Declaration of variables used for chip-8 implementation.  *
 *  Definition of these variables is done in another module. */
+#ifndef MEMORY1H_H
+#define MEMORY1H_H
  
 
 
@@ -32,3 +34,6 @@
 
 	/*keypad-memory of chip8 : */
 	unsigned char key[16];
+
+
+#endif
