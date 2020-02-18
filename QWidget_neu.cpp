@@ -183,7 +183,7 @@ void Thread1::fu_op(unsigned short op1)
 					if(sp>=1)
 					{
 						stack[sp] = 0x0; 
-						--sp; /*increment stack pointer*/
+						--sp; /*decrement stack pointer*/
 						pc = stack[sp];
 					}
 					else
