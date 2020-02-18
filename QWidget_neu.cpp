@@ -190,7 +190,6 @@ void Thread1::fu_op(unsigned short op1)
 					{
 						printf("stack pointer exceeds minimum\n");
 					}
-					
 				}
 				else
 				{
@@ -210,8 +209,7 @@ void Thread1::fu_op(unsigned short op1)
 	
 	
 	if(op1_1==0x1)
-	{
-		
+	{	
 		unsigned short op2;
 		op2 = op1<<4;
 		op2 = op2>>4;
@@ -222,7 +220,6 @@ void Thread1::fu_op(unsigned short op1)
 	
 	if(op1_1==0x2)
 	{
-	
 		unsigned short subr_addr;
 		stack[sp] = pc;
 		++sp; /*increment stack pointer*/
@@ -241,7 +238,6 @@ void Thread1::fu_op(unsigned short op1)
 	
 	if(op1_1==0x3)
 	{
-		
 		unsigned short op2;	
 		op2 = op1 & 0x00ff;
 
