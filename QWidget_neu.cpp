@@ -179,8 +179,18 @@ void Thread1::fu_op(unsigned short op1)
 					}
 				}
 				else if(op1_4==0xe)
-				{
-					/*missing: Print*/
+				{	
+					if(sp>=1)
+					{
+						stack[sp] = 0x0; 
+						--sp; /*increment stack pointer*/
+						pc = stack[sp];
+					}
+					else
+					{
+						printf("stack pointer exceeds minimum\n");
+					}
+					
 				}
 				else
 				{
@@ -201,22 +211,37 @@ void Thread1::fu_op(unsigned short op1)
 	
 	if(op1_1==0x1)
 	{
+		
 		unsigned short op2;
 		op2 = op1<<4;
 		op2 = op2>>4;
 
-		pc = op2;
+		pc = op2 - 2; 	
 	}
 	
 	
 	if(op1_1==0x2)
 	{
-		/*missing: Print*/
+	
+		unsigned short subr_addr;
+		stack[sp] = pc;
+		++sp; /*increment stack pointer*/
+		
+		if(sp<=0xf)
+		{
+			subr_addr = op1 & 0xfff;
+			pc = subr_addr - 2; 
+		}
+		else
+		{
+			printf("stack pointer exceeds maximum\n");
+		}
 	}
 	
 	
 	if(op1_1==0x3)
 	{
+		
 		unsigned short op2;	
 		op2 = op1 & 0x00ff;
 
@@ -267,7 +292,7 @@ void Thread1::fu_op(unsigned short op1)
 	if(op1_1==0x7)
 	{
 		unsigned short op2;
-		op2 = op2 & 0x00ff;
+		op2 = op1 & 0x00ff;
 
 		V[op1_2] = V[op1_2] + op2;
 	}
@@ -311,7 +336,16 @@ void Thread1::fu_op(unsigned short op1)
 		}
 		else if(op1_4==0x5)
 		{
-			/*missing: Print*/
+			if(V[op1_2]>=V[op1_3])
+			{
+				V[0xf] = 1;
+				V[op1_2] = V[op1_2] - V[op1_3];
+			}
+			else
+			{
+				V[0xf] = 0;
+				V[op1_2] = V[op1_2] - V[op1_3];
+			}
 		}
 		else if(op1_4==0x6)
 		{
@@ -320,7 +354,16 @@ void Thread1::fu_op(unsigned short op1)
 		}
 		else if(op1_4==0x7)
 		{
-			/*missing: Print*/
+			if(V[op1_3]>=V[op1_2])
+			{
+				V[0xf] = 1;
+				V[op1_2] = V[op1_3] - V[op1_2];
+			}
+			else
+			{
+				V[0xf] = 0;
+				V[op1_2] = V[op1_3] - V[op1_2];
+			}
 		}
 		else if(op1_4==0xe)
 		{
@@ -378,31 +421,34 @@ void Thread1::fu_op(unsigned short op1)
 		V[op1_2] = (rand()%256) & op2;
 	}
 	
+	
 	if(op1_1==0xd)
 	{
+		unsigned char** gfx2;
 		int i,j;
-		unsigned char and1, and2, exor;
+		unsigned char and1, and2, exor, vx_value, vy_value;
 
 		V[0xf] = 0;
+		vx_value = V[op1_2];
+		vy_value = V[op1_3];
 		for(j=0;j<op1_4;++j)
 		{
 			for(i=0;i<8;++i)
 			{
 				and1 = memory[(I+j)] & (0x01<<(7-i));
 				and2 = and1>>(7-i);
-				exor = gfx[op1_2+i][op1_3+j] ^ and2;
+				exor = gfx[vx_value+i][vy_value+j] ^ and2;
 				if( exor==0x1 )
 				{
-					gfx[op1_2+i][op1_3+j] = 1;
+					gfx[vx_value+i][vy_value+j] = 1;
 				}
-	
 				if( exor==0x0 )
 				{
-					if(gfx[op1_2+i][op1_3+j] == 1 )/* checks if screen flips from set to unset*/
+					if(gfx[vx_value+i][vy_value+j] == 1 )/* checks if screen flips from set to unset*/
 					{
 						V[0xf] = 1;
 					} 
-					gfx[op1_2+i][op1_3+j] = 0;	
+					gfx[vx_value+i][vy_value+j] = 0;	
 				}
 			}
 		}
@@ -424,7 +470,7 @@ void Thread1::fu_op(unsigned short op1)
 		{
 			if(op1_4==0x7)
 			{
-				/*missing: Print*/
+				V[op1_2] = delay_timer;
 			}
 			else if(op1_4==0xa)
 			{
@@ -447,7 +493,15 @@ void Thread1::fu_op(unsigned short op1)
 			}
 			else if(op1_4==0xe)
 			{
-				/*missing: Print*/
+				I = I + V[op1_2];
+				if(I>0xfff)
+				{
+					V[0xf] = 1;
+				}
+				else
+				{
+					V[0xf] = 0;					
+				}
 			}
 			else
 			{
@@ -458,7 +512,7 @@ void Thread1::fu_op(unsigned short op1)
 		{
 			if(op1_4==0x9)
 			{
-				/*missing: Print*/
+				I = 0x50 + V[op1_2]*5;
 			}
 			else
 			{
@@ -516,6 +570,7 @@ void Thread1::fu_op(unsigned short op1)
 		}
 	}
 }
+
 
 void Thread1::update_timer(void)
 {
