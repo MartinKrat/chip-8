@@ -433,18 +433,18 @@ void Thread1::fu_op(unsigned short op1)
 			{
 				and1 = memory[(I+j)] & (0x01<<(7-i));
 				and2 = and1>>(7-i);
-				exor = gfx[vx_value+i][vy_value+j] ^ and2;
+				exor = gfx[((vx_value+i)%64)][((vy_value+j)%32)] ^ and2;
 				if( exor==0x1 )
 				{
-					gfx[vx_value+i][vy_value+j] = 1;
+					gfx[((vx_value+i)%64)][((vy_value+j)%32)] = 1;
 				}
 				if( exor==0x0 )
 				{
-					if(gfx[vx_value+i][vy_value+j] == 1 )/* checks if screen flips from set to unset*/
+					if(gfx[((vx_value+i)%64)][((vy_value+j)%32)] == 1 )/* checks if screen flips from set to unset*/
 					{
 						V[0xf] = 1;
 					} 
-					gfx[vx_value+i][vy_value+j] = 0;	
+					gfx[((vx_value+i)%64)][((vy_value+j)%32)] = 0;	
 				}
 			}
 		}
