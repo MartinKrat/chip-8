@@ -451,12 +451,41 @@ void Thread1::fu_op(unsigned short op1)
 		emit fu_signal1();
 	}
 	
-	
-	
-	
+		
 	if(op1_1==0xe)
 	{
-		/*missing: Print*/
+		if(op1_3==0x9)
+		{
+			if(op1_4==0xe)
+			{
+				if(key[V[op1_2]]==1)
+				{
+					pc += 2;
+				}
+			}
+			else
+			{
+				printf("bad opcode\n");
+			}
+		}
+		else if(op1_3==0xa)
+		{
+			if(op1_4==0x1)
+			{
+				if(key[V[op1_2]]==0)
+				{
+					pc += 2;
+				}
+			}
+			else
+			{
+				printf("bad opcode\n");
+			}
+		}
+		else
+		{
+			printf("bad opcode\n");
+		}
 	}
 	
 	
